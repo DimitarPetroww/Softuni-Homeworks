@@ -1,4 +1,4 @@
-function (a, x, z) {
+function solve(a, x, z) {
     if (!Array.isArray(a)) {
         return NaN
     }
