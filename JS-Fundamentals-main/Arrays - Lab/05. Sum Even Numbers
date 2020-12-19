@@ -1,0 +1,10 @@
+function solve(arr) {
+    let result=0
+    for (let number of arr) {
+        number=Number(number)
+        if(number % 2 === 0) {
+            result+=number
+        }
+    }
+    console.log(result);
+}
