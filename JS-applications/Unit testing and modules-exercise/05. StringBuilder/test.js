@@ -2,6 +2,37 @@ const StringBuilder = require("./app")
 let { assert, expect } = require("chai")
 
 describe("StringBuilder", () => {
+    describe("isItClass", () => {
+        it("is our StringBuilder a class", () => {
+            let str=new StringBuilder()
+            assert.equal(str instanceof StringBuilder, true)
+        })
+    })
+    describe("does it have all properties", () => {
+        it("does it have method called _verifyParam", () => {
+            assert.equal(StringBuilder.hasOwnProperty("_vrfyParam"), true)
+        })
+        it("does it have method called append", () => {
+            let str=new StringBuilder()
+            assert.equal(str.__proto__.hasOwnProperty("append"), true)
+        })
+        it("does it have method called prepend", ()=> {
+            let str=new StringBuilder()
+            assert.equal(str.__proto__.hasOwnProperty("append"), true)
+        })
+        it("does it have method called toString", ()=> {
+            let str=new StringBuilder()
+            assert.equal(str.__proto__.hasOwnProperty("toString"), true)
+        })
+        it("does it have method called insertAt", ()=> {
+            let str=new StringBuilder()
+            assert.equal(str.__proto__.hasOwnProperty("insertAt"), true)
+        })
+        it("does it have method called remove", ()=> {
+            let str=new StringBuilder()
+            assert.equal(str.__proto__.hasOwnProperty("remove"), true)
+        })
+    })
     describe("constructor", () => {
         it("the object should be able to be instantiated without param", () => {
             assert.equal(new StringBuilder().toString(), "")
