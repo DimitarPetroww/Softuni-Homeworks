@@ -14,23 +14,23 @@ describe("StringBuilder", () => {
         })
         it("does it have method called append", () => {
             let str=new StringBuilder()
-            assert.equal(str.__proto__.hasOwnProperty("append"), true)
+            assert.equal(str.append !== undefined, true)
         })
         it("does it have method called prepend", ()=> {
             let str=new StringBuilder()
-            assert.equal(str.__proto__.hasOwnProperty("append"), true)
+            assert.equal(str.prepend !== undefined, true)
         })
         it("does it have method called toString", ()=> {
             let str=new StringBuilder()
-            assert.equal(str.__proto__.hasOwnProperty("toString"), true)
+            assert.equal(str.toString !== undefined, true)
         })
         it("does it have method called insertAt", ()=> {
             let str=new StringBuilder()
-            assert.equal(str.__proto__.hasOwnProperty("insertAt"), true)
+            assert.equal(str.insertAt !== undefined, true)
         })
         it("does it have method called remove", ()=> {
             let str=new StringBuilder()
-            assert.equal(str.__proto__.hasOwnProperty("remove"), true)
+            assert.equal(str.remove !== undefined, true)
         })
     })
     describe("constructor", () => {
@@ -45,7 +45,7 @@ describe("StringBuilder", () => {
         it("verify function should throw exception if we try to pass argument that is not a string", () => {
             assert.throws(() => {
                 return new StringBuilder(5)
-            }, 'Argument must be а string')
+            }, TypeError)
         })
     })
     describe("append", () => {
