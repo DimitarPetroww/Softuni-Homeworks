@@ -1,5 +1,5 @@
-const isSymmetric=require("./app")
-let { assert }=require("chai")
+const isSymmetric = require("./app")
+let { assert } = require("chai")
 
 
 describe("function isSymmetric", ()=> {
