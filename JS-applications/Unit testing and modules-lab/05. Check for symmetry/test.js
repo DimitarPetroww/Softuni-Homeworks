@@ -12,4 +12,13 @@ describe("function isSymmetric", ()=> {
     it("function should return true if the array is symmetric", () => {
         assert.equal(isSymmetric([1, 1, 1]), true)
     })
+    it("function should return false if the array is not symmetric", () => {
+        assert.equal(isSymmetric([1, 1, -1]), false)
+    })
+    it("function should return true if the array is symmetric", () => {
+        assert.equal(isSymmetric([1]), true)
+    })
+    it("function should return true if the array is symmetric", () => {
+        assert.equal(isSymmetric([5,'hi',{a:5},new Date(),{a:5},'hi',5]), true)
+    })
 })
