@@ -1,7 +1,6 @@
 const rgbToHexColor = require("./app")
 let { assert } = require("chai")
 
-
 describe("RGB checker", function () {
     it("valid", () => {
         assert.equal(rgbToHexColor(25, 125, 255), "#197DFF")
