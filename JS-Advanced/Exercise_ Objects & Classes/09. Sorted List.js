@@ -5,6 +5,7 @@ class List {
     }
     add(el) {
         this.list.push(el)
+        this.list.sort((a,b)=> a - b)
         this.size++
     }
     remove(index) {
