@@ -5,7 +5,7 @@ function loadRepos() {
 
    httpRequest.addEventListener("loadend", function() {
       let repos=JSON.parse(this.responseText)
-      result.innerHTML=repos.map(x=> `<p><a href="${x.svn_url}">${x.name}</a></p>`).join("")
+      result.innerHTML=repos.map(x=> `<p><a href="${x.html_url}" target="_blank">${x.name}</a></p>`).join("")
    })
    httpRequest.open("GET", url)
    httpRequest.send()
