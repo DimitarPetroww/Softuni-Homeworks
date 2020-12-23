@@ -13,7 +13,6 @@ function growingWord() {
 		"red": x=> x="blue"
 	}
 	let color=growingWordElement.style.color
-	console.log(color)
 	if(color === "") {
 		growingWordElement.style.color="blue"
 	}else {
