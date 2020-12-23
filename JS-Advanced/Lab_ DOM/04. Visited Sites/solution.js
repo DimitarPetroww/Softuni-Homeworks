@@ -6,10 +6,8 @@ function solve() {
   }
   function click(e) {
       let sibling=e.currentTarget.nextElementSibling
-      let command=sibling.innerText.split(" ")
-      let word1=command[0]
-      let timesVisited=Number(command[1])
-      let word2=command[2]
+      let [word1, timesVisited, word2]=sibling.innerText.split(" ").map(x=> isNaN(x) ? x : Number(x))
+      
       timesVisited++
 
       sibling.innerText=`${word1} ${timesVisited} ${word2}`
