@@ -8,14 +8,14 @@ function growingWord() {
 
 	}
 	const colors={
-		"blue": x=> x="green",
-		"green": x=> x="red",
-		"red": x=> x="blue"
+		"blue": "green",
+		"green":"red",
+		"red": "blue"
 	}
 	let color=growingWordElement.style.color
 	if(color === "") {
 		growingWordElement.style.color="blue"
 	}else {
-		growingWordElement.style.color=colors[color](color)
+		growingWordElement.style.color=colors[color]
 	}
 }
