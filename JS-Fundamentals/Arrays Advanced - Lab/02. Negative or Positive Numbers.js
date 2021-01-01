@@ -1,11 +1,6 @@
 function solve(arr) {
-    let result=[]
-    for(let num of arr) {
-        if(num>=0) {
-            result.push(num)
-        }else {
-            result.unshift(num)
-        }
-    }
-    return result.join("\n");
+    return arr.reduce((a , b) => {
+        a[b >= 0 ? "push" : "unshift"](b)
+        return a
+    }, []).join("\n")
 }
