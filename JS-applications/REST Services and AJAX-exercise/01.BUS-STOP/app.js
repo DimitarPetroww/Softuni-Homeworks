@@ -8,13 +8,13 @@ function getInfo() {
             stopNameElement.textContent = name
             Object.entries(buses)
                 .map(([id, time]) => {
-                    let li=document.createElement("li")
-                    li.innerHTML=`Bus ${id} arrives in ${time}`
+                    let li = document.createElement("li")
+                    li.innerHTML = `Bus ${id} arrives in ${time}`
                     return li
                 })
                 .forEach(li => busesElement.appendChild(li))
         })
-        .catch(err => {
+        .catch((err) => {
             stopNameElement.textContent = `Error`
         })
 }
