@@ -23,8 +23,7 @@ function solve() {
         button.classList.add("red")
         button.textContent = "Del"
 
-        let [formattedDate, time] = formatDate(date.value)
-        h4.textContent = `${lecture.value} - ${formattedDate} - ${time}`
+        h4.textContent = `${lecture.value} - ${formatDate(date.value).join(" - ")}`
 
         li.appendChild(h4)
         li.appendChild(button)
@@ -44,9 +43,8 @@ function solve() {
         li.classList.add("flex")
         button.classList.add("red")
         button.textContent = "Del"
-
-        let [formattedDate, time] = formatDate(date.value)
-        h4.textContent = `${lecture.value} - ${formattedDate} - ${time}`
+        
+        h4.textContent = `${lecture.value} - ${formatDate(date.value).join(" - ")}`
 
         h3.textContent = `${module.value.toUpperCase()}-MODULE`
 
@@ -73,4 +71,4 @@ function solve() {
     function formatDate(date) {
         return [date.split("T")[0].replace(/-/g, "/"), date.split("T")[1]]
     }
-};
+}
