@@ -8,15 +8,11 @@ function getInfo() {
         .then(json => {
             let { buses, name } = json
             stopNameElement.textContent = name
-            Object.entries(buses)
-                .map(([id, time]) => {
-                    let li = document.createElement("li")
-                    li.innerHTML = `Bus ${id} arrives in ${time}`
-                    return li
-                })
-                .forEach(li => busesElement.appendChild(li))
+            busesElement.innerHTML=Object.entries(buses)
+                .map(([id, time]) => `<li>Bus ${id} arrives in ${time}</li>`)
+                .join("")
         })
-        .catch((err) => {
+        .catch((e) => {
             stopNameElement.textContent = `Error`
         })
     document.getElementById("stopId").value = ""
