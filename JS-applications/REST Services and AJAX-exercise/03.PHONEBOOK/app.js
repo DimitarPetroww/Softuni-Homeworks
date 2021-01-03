@@ -32,9 +32,9 @@ function attachEvents() {
     function appendListItem(key, person, phone) {
         let btnDelete = document.createElement("button")
         btnDelete.innerHTML = "Delete"
-        btnDelete.addEventListener("click", (e) => {
+        btnDelete.addEventListener("click", () => {
             fetch(`https://phonebook-nakov.firebaseio.com/phonebook/${key}.json`, { method: "DELETE" })
-                .then(() => onLoad())
+            .then(() => onLoad())
         })
         let li = document.createElement("li")
         li.innerHTML = `${person}:${phone}`
