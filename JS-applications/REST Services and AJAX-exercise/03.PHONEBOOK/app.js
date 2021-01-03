@@ -1,35 +1,20 @@
 function attachEvents() {
     let [btnLoad, btnCreate] = document.querySelectorAll("#btnLoad, #btnCreate")
     let ul = document.getElementById("phonebook")
-    let obj = {}
-
     btnLoad.addEventListener("click", onLoad)
-
     btnCreate.addEventListener("click", onCreate)
 
-    document.querySelector("ul").addEventListener("click", (e) => {
-        if (e.target.tagName !== "BUTTON") {
-            return
-        }
-        fetch(`https://phonebook-nakov.firebaseio.com/phonebook/${obj[e.target.parentElement.innerText.split(": ")[1].slice(0, -6)]}.json`
-        , 
-        {
-         method: 'DELETE' 
-        })
-        .then(() => onLoad())
-    })
     function onLoad() {
         ul.innerHTML = ""
         fetch("https://phonebook-nakov.firebaseio.com/phonebook.json")
             .then((response) => response.json())
             .then((data) => {
                 Object.entries(data)
-                    .forEach(([key, { person, phone }]) => {
-                        ul.innerHTML += createElement(person, phone)
-                        obj[phone] = key
+                    .map(([key, { person, phone }]) => {
+                        appendListItem(key, person, phone)
                     })
             }).catch(() => {
-                ul.innerHTML=`No phonebooks to show!`
+                ul.innerHTML = `No recources found!!`
             })
     }
 
@@ -44,8 +29,17 @@ function attachEvents() {
         })
         .then(() => onLoad())
     }
-    function createElement(person, phone) {
-        return `<li>${person}: ${phone}<button>Delete</button></li>`
+    function appendListItem(key, person, phone) {
+        let btnDelete = document.createElement("button")
+        btnDelete.innerHTML = "Delete"
+        btnDelete.addEventListener("click", (e) => {
+            fetch(`https://phonebook-nakov.firebaseio.com/phonebook/${key}.json`, { method: "DELETE" })
+                .then(() => onLoad())
+        })
+        let li = document.createElement("li")
+        li.innerHTML = `${person}:${phone}`
+        li.appendChild(btnDelete)
+        ul.appendChild(li)
     }
 }
 attachEvents();
