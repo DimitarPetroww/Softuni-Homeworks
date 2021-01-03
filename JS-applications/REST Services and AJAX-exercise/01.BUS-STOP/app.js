@@ -1,6 +1,8 @@
 function getInfo() {
     let url = `https://judgetests.firebaseio.com/businfo/${document.getElementById("stopId").value}.json`
     let [stopNameElement, busesElement] = document.querySelectorAll("#stopName, #buses")
+    stopNameElement.textContent = ''
+    busesElement.textContent = ''
     fetch(url)
         .then(response => response.json())
         .then(json => {
@@ -17,4 +19,5 @@ function getInfo() {
         .catch((err) => {
             stopNameElement.textContent = `Error`
         })
+    document.getElementById("stopId").value = ""
 }
