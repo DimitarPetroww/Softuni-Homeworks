@@ -1,8 +1,5 @@
-function solution (input) {
-    return (data) => input + data;
+function solution(num) {
+    return function(value) {
+        return value + num
+    }
 }
-
-
-let add5 = solution(7);
-console.log(add5(2));
-console.log(add5(3));

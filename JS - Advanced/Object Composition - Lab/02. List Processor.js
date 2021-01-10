@@ -1,15 +1,10 @@
-function foo(data) {
-    let builder = function() {
-        let list = []
-        return {
-            add(name){ list.push(name) },
-            remove(name){ list = list.filter( x=> x !== name) },
-            print(){ console.log(list.join(',')); }
-        }
+function solve(input) {
+    let list = []
+    let result = {
+        add: (text) => list.push(text),
+        remove: (text) => list = list.filter(x => x !== text),
+        print: () => console.log(list.join(","))
     }
-    let listProcessor = builder()
-    data.map( x => x.split(' ') )
-    .map( ([cmd,text]) => listProcessor[cmd](text))
-}
 
-foo(['add peter', 'add george', 'add peter', 'remove peter','print']) 
+    input.map(x => x.split(" ")).forEach(([a, b]) => result[a](b))
+}

@@ -1,5 +1,3 @@
-function foo(data) {
-    return JSON.parse(data).reduce( (a,b) => ({...a,...b}) ,{})
+function solve(input) {
+    return JSON.parse(input).reduce((a , c) =>({...a , ...c}) , {})
 }
-
-console.log( foo(`[{"canMove": true},{"canMove":true, "doors": 4},{"capacity": 5}]`) );

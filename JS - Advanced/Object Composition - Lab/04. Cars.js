@@ -1,24 +1,21 @@
-function foo(data) {
-    let builder = () => {
-        let car = {};
+function solve(input) {
+    const cars = {}
+    let carFactory = (function () {
         return {
-            create: (name, inherit, parent) => {
-                car[name] = inherit ? Object.create(car[parent]) : {}
-            },
-            set: (name, key, value) => car[name][key] = value,
+            create: (name, inherit, parentElement) => cars[name] = inherit ? Object.create(cars[parentElement]) : {},
+            set: (name, key, value) => cars[name][key] = value,
             print: (name) => {
-                let r = [];
-                for (const key in car[name]) {
-                    r.push(`${key}:${car[name][key]}`)
+                let result=[]
+                for (let key in cars[name]) {
+                    result.push(`${key}:${cars[name][key]}`)
                 }
-                console.log(r.join(', '));
+                console.log(result.join(", "));
             }
         }
-    }
-    let factory = builder();
-    data.map(x => x.split(' '))
-        .map(([cmd, ...props]) => factory[cmd].apply(undefined,props))
+    })()
+    input
+        .map(x => x.split(" "))
+        .forEach(([command,
+            ...args
+        ]) => carFactory[command].apply(null, args))
 }
-
-
-foo(['create c1', 'create c2 inherit c1', 'set c1 color red', 'set c2 model new', 'print c1', 'print c2'])

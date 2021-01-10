@@ -1,13 +1,14 @@
-function foo(data) {
-    return data.map(([width, height]) => ({
-        width,
-        height,
-        area(){ return this.width * this.height},
-        compareTo(rectagle){
-            return rectagle.area() - this.area() || rectagle.width - this.width
+function solve(input) {
+    return input.map(([width , height])=> {
+        return {
+            width,
+            height,
+            area: function() {
+                return this.width * this.height
+            },
+            compareTo: function(other) {
+                return other.area() - this.area() || other.width - this.width
+            }
         }
-    })).sort( (a,b) => a.compareTo(b) )
+    }).sort((a , b) => a.compareTo(b))
 }
-
-
-console.log( foo([[10,5], [3,20], [5,12]]) )
