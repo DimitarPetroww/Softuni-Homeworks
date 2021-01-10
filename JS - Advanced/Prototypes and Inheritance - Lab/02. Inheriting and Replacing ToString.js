@@ -31,12 +31,3 @@ function toStringExtension() {
         Student
     }
 }
-
-let classes = toStringExtension();
-let Teacher = classes.Teacher;
-let Person = classes.Person;
-
-let t = new Teacher('pesho','pesho@pesho.com','Matematika');
-
-
-console.log(t.toString());
