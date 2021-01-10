@@ -1,20 +1,21 @@
 function growingWord() {
-    let parentElement = document.getElementById('exercise')
-    let heading = parentElement.lastElementChild
-    let colorElements = document.getElementById('colors')
+	let growingWordElement = document.querySelector("#exercise p")
+	if (!growingWordElement.style.fontSize) {
+		growingWordElement.style.fontSize = "2px"
+	} else {
+		let fontSize = growingWordElement.style.fontSize.slice(0, growingWordElement.style.fontSize.length - 2) * 2 + "px"
+		growingWordElement.style.fontSize = fontSize
 
-    if(!heading.style.fontSize){
-
-        heading.style.fontSize = '2px'
-
-    } else {
-        heading.style.fontSize = parseInt(heading.style.fontSize)*2 + 'px'
-    }
-    let firstColor = colorElements.firstElementChild;
-    let color = firstColor.innerHTML.toLowerCase()
-    
-    heading.style.color = color
-
-    colorElements.appendChild(firstColor)
-
+	}
+	const colors={
+		"blue": "green",
+		"green":"red",
+		"red": "blue"
+	}
+	let color=growingWordElement.style.color
+	if(color === "") {
+		growingWordElement.style.color="blue"
+	}else {
+		growingWordElement.style.color=colors[color]
+	}
 }

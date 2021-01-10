@@ -10,6 +10,5 @@ function solve() {
         let visited = Number(paragraphElement.innerText.split(' ')[1]);
         visited++;
         paragraphElement.innerText = `visited ${visited} times`
-        console.log(visited);
     }
 }
