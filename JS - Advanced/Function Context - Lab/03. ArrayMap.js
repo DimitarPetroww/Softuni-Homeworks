@@ -1,9 +1,6 @@
-function arrayMap(array,func) {
-    return array.reduce( (a,x) => {
-        a.push(func(x))
-        return a   
-    },[] )
+function arrayMap(arr , func) {
+    return arr.reduce((a , c)=>{a.push(func(c)) 
+        return a
+    }
+    , [])
 }
-
-let nums = [1,2,3,4,5];
-console.log(arrayMap(nums,(item)=> item * 2)); // [ 2, 4, 6, 8, 10 ]

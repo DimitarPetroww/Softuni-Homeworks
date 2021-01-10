@@ -1,18 +1,18 @@
 function solve() {
-    let choose = document.querySelector('#dropdown')
-    let box = document.querySelector('#box')
-    let list = document.querySelector('#dropdown-ul')
-    choose.addEventListener('click', () => {
-        if(!list.style.display || list.style.display === 'none'){
-        list.style.display = 'block'
-        } else {
-            list.style.display = 'none'
-            box.style.color = 'white'
-            box.style.backgroundColor = 'black'
+    let [dropDownBtn, menu, box] = document.querySelectorAll("#dropdown , #dropdown-ul , #box")
+    let clicked = 0
+    dropDownBtn.addEventListener("click", () => {
+        menu.style.display = "block"
+        clicked++
+        if (clicked % 2 === 0) {
+            menu.style.display = "none"
+            box.style.color="white"
+            box.style.backgroundColor="black"
         }
     })
-    list.addEventListener( 'click', e => {
-        box.setAttribute('style', `background-color:${e.target.textContent}`)
-        box.style.color = 'black'
+    menu.addEventListener("click", (e) => {
+        box.style.backgroundColor = e.target.textContent
+        box.style.color="black"
     })
+
 }
