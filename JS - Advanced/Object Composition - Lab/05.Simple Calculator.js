@@ -1,4 +1,4 @@
-(function () {
+function result() {
     let sumElement1;
     let sumElement2;
     let resultElement;
@@ -16,4 +16,4 @@
             resultElement.value=Number(sumElement1.value) - Number(sumElement2.value)
         },
     }
-})()
+}
