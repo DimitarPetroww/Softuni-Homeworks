@@ -1,6 +1,4 @@
 function solve(arr) {
-    let step=Number(arr.pop())
-    for(let i=0;i<arr.length;i+=step) {
-        console.log(arr[i]);
-    }
+    const step=arr.pop()
+    return arr.filter((_, i) => i % step===0).join("\n")
 }
