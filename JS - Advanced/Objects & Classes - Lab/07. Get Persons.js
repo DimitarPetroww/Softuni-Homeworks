@@ -1,4 +1,4 @@
-function foo() {
+function solve() {
     class Person {
         constructor(firstName, lastName, age, email) {
             this.firstName = firstName

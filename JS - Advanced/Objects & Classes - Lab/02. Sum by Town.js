@@ -1,12 +1,13 @@
-function foo(data) {
-    return JSON.stringify(
-            data.reduce( (a,b,i) => {
-            if(i % 2 === 0){
-                a.hasOwnProperty(b) ? a[b] += Number(data[i + 1]) : a[b] = Number(data[i + 1])
+function solve(arr) {
+    let result=arr.reduce((a , b , i)=> {
+        if(i % 2 ===0) {
+            if(a[b]) {
+                a[b]+=Number(arr[i+1])
+            }else {
+                a[b]=Number(arr[i+1]);
             }
-            return a
-            },{}) 
-        )
+        }
+        return a
+    }, {})
+    console.log(JSON.stringify(result));
 }
-
-console.log(foo(['Sofia','20','Varna','3','Sofia','5','Varna','4']))

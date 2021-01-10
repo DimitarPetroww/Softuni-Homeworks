@@ -1,26 +1,13 @@
-
-function foo(data) {
-    let keys = extractKeys(data[0])
-
-    return JSON.stringify(
-        data
-        .slice(1)
-        .map(extractKeys)
-        .map( x => x.reduce( (a,b,i) => {
-                a[keys[i]] = b
-                return a
-            },{}))
-        )
-    
-    function extractKeys(str) {
-    return str
-        .split('|')
-        .filter( x => x !== '' )
-        .map( x => x.trim() )
-        .map( x => Number(x) ? Math.round(Number(x) * 100) / 100 : ( x === '0.00' ? x = 0 : x ) )
-    }
+function solve(input) {
+    let data=input.map(x=> x.split("|").filter(y=> y!=="").map(x=> x.trim()))
+    let properties=data.shift()
+    let result=data.reduce((a , b)=> {
+        a.push({
+            [properties[0]]:b[0],
+            [properties[1]]:parseFloat(Number(b[1]).toFixed(2)),
+            [properties[2]]:parseFloat(Number(b[2]).toFixed(2))
+        })
+        return a
+    }, [])
+    return JSON.stringify(result)
 }
-
-console.log(foo(['| Town | Latitude | Longitude |',
-    '| Random Town | 0.00 | 0.00 |',
-    '| Beijing | 39.913818 | 116.363625 |']));
