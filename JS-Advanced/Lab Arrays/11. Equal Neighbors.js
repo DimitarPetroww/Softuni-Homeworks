@@ -10,5 +10,5 @@ function solve(matrix) {
             }
         })
     })
-    console.log(pairs);
+    return pairs
 }
