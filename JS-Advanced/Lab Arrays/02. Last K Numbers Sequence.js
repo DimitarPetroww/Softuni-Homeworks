@@ -3,5 +3,5 @@ function solve(n , k) {
     for(let i=1;i<n;i++) {
         result.push(result.slice(-k).reduce((a , v)=> a + v , 0))
     }
-    console.log(result.join(" "));
+    return result.join(" ")
 }
