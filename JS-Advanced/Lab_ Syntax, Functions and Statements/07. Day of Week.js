@@ -8,5 +8,5 @@ function solve(n) {
         Saturday : 6,
         Sunday : 7
     }
-    console.log(daysOfWeek[n] ? daysOfWeek[n] : "error");
+    return daysOfWeek[n] ? daysOfWeek[n] : "error"
 }
