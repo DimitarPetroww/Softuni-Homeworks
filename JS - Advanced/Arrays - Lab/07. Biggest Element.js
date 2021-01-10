@@ -1,8 +1,3 @@
-function foo(input) {
-    let m = []
-    for (let i = 0; i < input.length; i++) { m.push(...input[i])}
-    console.log(Math.max(...m));
+function solve(matrix) {
+    return matrix.map(x=>Math.max(...x)).sort((a ,b)=> b - a).slice(0,1).join("")
 }
-
-foo([[20, 50, 10],
-    [8, 33, 145]])

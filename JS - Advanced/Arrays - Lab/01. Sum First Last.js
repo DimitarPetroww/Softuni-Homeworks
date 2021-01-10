@@ -1,8 +1,3 @@
-function foo(input) {
-    input = input.map(Number)
-    let x = input.shift()
-    let y = input.pop()
-    let r = isNaN(x + y)? x + x : x + y
-    console.log( r )
+function solve(arr) {
+    return Number(arr[0]) + Number(arr[arr.length -1])
 }
-foo(['5'])

@@ -1,13 +1,11 @@
-function foo(input) {
-    let output = []
-    let r = 0;
-    input.forEach( (x,i)=> { r+= x[i] });
-    output.push(r)
-    r = 0;
-    input.reverse().forEach( (x,i) => { r += x[i] });
-    output.push(r)
-    console.log(output.join(' '));
+function solve(matrix) {
+    let sum1=0
+    let sum2=0
+    let i=0
+    matrix.forEach(x=> {
+        sum1+=x[i]
+        sum2+=x[x.length-1-i]
+        i++
+    })
+    return [sum1 , sum2].join(" ")
 }
-foo([[3, 5, 17],
-    [-1, 7, 14],
-    [1, -8, 89]])

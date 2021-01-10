@@ -1,5 +1,3 @@
-function foo(input) {
-    input = input.filter((x,i) => i % 2 == 0)
-    return input.join(' ')
+function solve(arr) {
+    return arr.filter((_, i) => i % 2 ===0).join(" ")
 }
-foo(['20', '30', '40'])

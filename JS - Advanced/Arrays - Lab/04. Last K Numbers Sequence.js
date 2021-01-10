@@ -1,4 +1,4 @@
-function foo(n, k) {
+function solve(n, k) {
     let m = [1]
     for (let i = 0; i < n - 1; i++) {
         let z = m.length < k ? m : m.slice(m.length - k)
@@ -6,5 +6,3 @@ function foo(n, k) {
     }
     return m
 }
-
-foo(8,2)
