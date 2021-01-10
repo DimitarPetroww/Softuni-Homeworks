@@ -1,8 +1,4 @@
-function foo(str1, str2, str3) {
-    let result = str1.length + str2.length + str3.length
-    let avg = Math.floor(result / 3)
-    console.log(result);
-    console.log(avg);
+function solve(...strings) {
+    return [strings.map(x=> x.length).reduce((a , b) => a + b  , 0),
+    Math.floor((strings.map(x=> x.length).reduce((a , b) => a + b  , 0)) / strings.length)].join("\n")
 }
-
-foo('chocolate', 'ice cream', 'cake')

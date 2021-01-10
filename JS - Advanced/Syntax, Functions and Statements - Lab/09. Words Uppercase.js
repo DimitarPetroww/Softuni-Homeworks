@@ -1,7 +1,3 @@
-function foo(input) {
-    input = input.split(/[\W]/g).filter(x => x !== '').join(', ').toUpperCase()
-    console.log(input);
+function solve(string) {
+    return string.match(/[\w]+/g).join(", ").toUpperCase()
 }
-
-foo('Hi, how are you?')
-foo('hello')

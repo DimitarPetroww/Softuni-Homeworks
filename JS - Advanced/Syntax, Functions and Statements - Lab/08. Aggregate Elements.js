@@ -1,6 +1,5 @@
-function foo(x) {
-    console.log(x.reduce((a,b) => a + b));
-    console.log(x.map(x => 1 / x).reduce((a,b) => a + b));
-    console.log(x.join(''));
+function solve(arr) {
+    return [arr.reduce((a , v)=> a + v , 0),
+    arr.reduce((a , c)=> a + 1 / c , 0),
+    arr.reduce((a , p)=> a + p , "")].join("\n")
 }
-foo([1,2,3])

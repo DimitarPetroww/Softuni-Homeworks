@@ -1,9 +1,8 @@
-function foo(n1,n2) {
-    n1 = Number(n1)
-    n2 = Number(n2)
-    let result = 0;
-    for (let i = n1; i <= n2; i++) { result += i }
-    console.log(result);
+function solve(...n) {
+    n=n.map(Number)
+    let arr=[]
+    for(let i=n[0];i<=n[1];i++) {
+         arr.push(i)
+    }
+    return arr.reduce((a , c) => a + c , 0)
 }
-
-foo('1','5')

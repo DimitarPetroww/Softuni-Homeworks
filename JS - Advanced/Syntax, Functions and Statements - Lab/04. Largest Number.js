@@ -1,5 +1,3 @@
-function foo(x,y,z) {
-    console.log(`The largest number is ${Math.max(x,y,z)}.`);
+function solve(...n) {
+    return `The largest number is ${n.sort((a , b) => a - b).splice(-1).join("")}.`
 }
-
-foo(5, -3, 16)
