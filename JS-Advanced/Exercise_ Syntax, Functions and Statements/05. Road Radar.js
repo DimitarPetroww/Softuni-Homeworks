@@ -1,20 +1,18 @@
-function solve(arr) {
-    let speed=arr[0]
-    let area=arr[1]
-    const limits= {
-        residential:x=> x-20,
-        city:x=> x-50,
-        interstate: x=> x-90,
-        motorway:x=> x-130
+function solve(speed, area) {
+    const limits = {
+        "motorway": 130,
+        "interstate": 90,
+        "city": 50,
+        "residential": 20
     }
-    let diff=limits[area](speed)
-    if(diff > 0) {
-        if(diff <=20) {
-            console.log("speeding");
-        }else if(diff <=40) {
-            console.log("excessive speeding");
-        }else {
-            console.log("reckless driving");
-        }
-    } 
+    let status;
+    const diff=speed - limits[area]
+    if(diff < 20) {
+        status="speeding"
+    }else if(diff < 40) {
+        status="excessive speeding"
+    }
+    return speed <= limits[area] 
+    ? `Driving ${speed} km/h in a ${limits[area]} zone`
+    : `The speed is ${diff} km/h faster than the allowed speed of ${limits[area]} - ${status ? status : "reckless driving "}`
 }
