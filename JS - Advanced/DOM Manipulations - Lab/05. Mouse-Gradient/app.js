@@ -1,7 +1,8 @@
 function attachGradientEvents() {
-    let box = document.getElementById('gradient')
-    box.addEventListener('mousemove', e => {
-        let result = `${Math.floor((e.offsetX / e.target.clientWidth) * 100)}%`
-        document.getElementById('result').innerText = result
+    let gradient=document.getElementById("gradient")
+    gradient.addEventListener("mousemove" , e => {
+        let width=e.target.clientWidth
+        let percent=`${Math.floor((e.offsetX / width) * 100)}%`
+        document.getElementById("result").innerText=percent
     })
 }

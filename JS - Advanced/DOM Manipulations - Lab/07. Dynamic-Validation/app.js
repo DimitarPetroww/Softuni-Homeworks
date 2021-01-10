@@ -1,11 +1,12 @@
 function validate() {
-    let email = document.getElementById('email')
-    email.addEventListener('change', (e) => {
-        let r = /[a-z]+@[a-z]+.[a-z]+/g
-        if(!r.test(e.target.value)){
-            e.target.classList.add('error')
-        } else {
-            e.target.classList.remove('error')
+    let inputEmail=document.getElementById("email")
+
+    let pattern=/[a-z]+@[a-z]+.[a-z]+/
+    inputEmail.addEventListener("change" , (e) =>{
+        if(pattern.test(e.target.value)) {
+            e.target.classList.remove("error")
+        }else {
+            e.target.classList.add("error")
         }
     })
 }

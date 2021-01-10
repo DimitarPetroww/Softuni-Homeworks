@@ -1,15 +1,16 @@
 function deleteByEmail() {
-    let data = document.getElementsByTagName('tbody')[0].children
-    let input = document.getElementsByName('email')[0]
-    let result = document.getElementById('result')
-    Array.from(data).map(x => {
-        let currentChild = x.children[1]
-        if(currentChild.textContent === input.value){
-            currentChild.parentElement.remove()
-            result.textContent = 'Deleted.'
-        } else {
-            result.textContent = 'Not found.'
+    let input=document.getElementsByTagName("input")[0]
+    let isFound=false
+    Array.from(document.querySelectorAll("#customers tbody tr td")).forEach((x , i) => {
+        if(i% 2 !==0) {
+            if(x.innerHTML===input.value) {
+                x.parentElement.remove()
+                isFound=true
+            }
         }
     })
-    input.value = ''
+    if(!isFound) {
+        document.getElementById("result").innerHTML="Not found."
+    }
+    input.value=""
 }

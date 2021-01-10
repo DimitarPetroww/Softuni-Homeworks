@@ -1,13 +1,12 @@
 function addItem() {
-    let items = document.getElementById('items')
-    let input = document.getElementById('newText')
-    let newLi = document.createElement('li')
-    newLi.innerHTML = `${input.value} <a href='#'>[Delete]</a>`
-    items.appendChild(newLi)
-
-    items.addEventListener('click', (e) => {
-        let parent = e.target.parentElement
-        parent.remove()
+    let input = document.getElementById("newText")
+    let ulElements = document.getElementById("items")
+    let li = document.createElement("li")
+    let link='<a href="#">[Delete]</a>'
+    li.innerHTML+=input.value + link
+    li.addEventListener("click" , (e) => {
+        if(e.target.tagName ==="A" ) e.target.parentElement.remove()
     })
-    input.value = ''
+    ulElements.appendChild(li)
+    input.value=""
 }

@@ -1,13 +1,11 @@
 function focus() {
-    let sections = document.getElementsByTagName('div')[0]
-    sections.addEventListener('focus', (e) => {
-        if(e.target.tagName === 'INPUT'){
-            e.target.parentElement.classList.add('focused')
-        }
-    },true)
-    sections.addEventListener('blur', (e) => {
-        if(e.target.tagName === 'INPUT'){
-            e.target.parentElement.classList.remove('focused')
-        }
-    },true)
+    let inputs=document.querySelectorAll("input[type='text']")
+    Array.from(inputs).forEach(x=> {
+        x.addEventListener("focus" ,(e)=> {
+            e.target.parentElement.setAttribute("class" , "focused")
+        })
+        x.addEventListener("blur" , (e) => {
+            e.target.parentElement.removeAttribute("class")
+        })
+    })
 }

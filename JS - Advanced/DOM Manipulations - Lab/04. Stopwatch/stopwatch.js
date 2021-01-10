@@ -1,30 +1,29 @@
 function stopwatch() {
-    let time = document.getElementById('time')
-    let start = document.getElementById('startBtn')
-    let end = document.getElementById('stopBtn')
-    let stop;
-    
-    start.addEventListener('click', () => {
-        time.textContent = `00:00`
-        let [min,sec] = [0,0]
-    stop = setInterval(() => {
-            min = Number(min)
-            sec = Number(sec)
-            sec++;
-            if(sec > 59){
-                min ++;
-                sec = 0;
+    let time=document.getElementById("time")
+    let startBtn=document.getElementById("startBtn")
+    let stopBtn=document.getElementById("stopBtn")
+    let interval;
+    startBtn.addEventListener("click" , (e) => {
+        time.textContent=`00:00`
+        interval=setInterval(function() {
+            let [mins , secs]=time.textContent.split(":")
+            startBtn.setAttribute("disabled" , true)
+            stopBtn.removeAttribute("disabled")
+            mins=Number(mins)
+            secs=Number(secs)
+            secs++
+            if(secs > 59) {
+                mins++
+                secs=0
             }
-            sec < 10 ? sec = `0${sec}` : sec
-            min < 10 ? min = `0${min}` : min
-            time.textContent = `${min}:${sec}`
-        }, 1000)
-        start.disabled = true
-        end.disabled = false
+            secs < 10? secs=`0${secs}` : secs
+            mins < 10? mins=`0${mins}` : mins
+            time.textContent=`${mins}:${secs}`
+        } , 1000)
     })
-    end.addEventListener('click', (e) => {
-        e.target.disabled = true
-        start.disabled = false
-        clearInterval(stop)
+    stopBtn.addEventListener("click" , (e)=> {
+        e.target.setAttribute("disabled" , true)
+        startBtn.removeAttribute("disabled")
+        clearInterval(interval)
     })
 }
