@@ -12,5 +12,5 @@ function solve(matrix) {
             }
         }
     })
-    console.log(isMagic);
+    return isMagic
 }

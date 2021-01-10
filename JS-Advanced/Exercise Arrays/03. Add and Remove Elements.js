@@ -1,18 +1,7 @@
-function solve(arr) {
-    let result=[]
-    let i=1
-    arr.forEach(x=> {
-        let current=i
-        if(x==="add") {
-            result.push(current)
-        }else {
-            result.splice(result.indexOf(current-1) , 1)
-        }
-        i++
-    })
-    if(result.length !==0) {
-        console.log(result.join("\n"));
-    }else {
-        console.log('Empty')
+function solve(input) {
+    let r = []
+    for (let i = 0; i < input.length; i++) {
+        input[i] === 'add' ? r.push(i + 1) : r.pop()
     }
+    return r.length > 0 ? r.join('\n') : 'Empty'
 }

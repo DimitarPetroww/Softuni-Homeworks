@@ -10,5 +10,5 @@ function solve(arr) {
         }
         result.push(obj)
     })
-    console.log(JSON.stringify(result));
+    return JSON.stringify(result)
 }

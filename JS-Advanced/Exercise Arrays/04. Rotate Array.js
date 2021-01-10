@@ -3,5 +3,5 @@ function solve(arr) {
     for(let i=0;i<rotates;i++) {
         arr.unshift(arr.pop())
     }
-    console.log(arr.join(" "));
+    return arr.join(" ")
 }

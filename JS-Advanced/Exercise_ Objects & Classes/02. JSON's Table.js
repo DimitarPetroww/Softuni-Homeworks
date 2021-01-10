@@ -9,5 +9,5 @@ function solve(arr) {
         html+=`\t</tr>\n`
     })
     html+=`</table>\n`
-    console.log(html);
+    return html
 }

@@ -1,10 +1,10 @@
 function solve(arr) {
-    arr.reduce((a , c)=> {
-        if(c >= a) {
-            a=c
-            console.log(c);
+    let c=Number.MIN_SAFE_INTEGER
+    return arr.reduce((a , b)=> {
+        if(b >= c) {
+            c=b
+            a.push(b)
         }
         return a
-    }, Number.MIN_SAFE_INTEGER)
-    
+    }, []).join("\n")
 }
