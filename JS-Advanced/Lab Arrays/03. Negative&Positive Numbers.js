@@ -1,11 +1,10 @@
 function solve(arr) {  
-    let result=[]
-    arr.forEach(x=> {
+    return arr.reduce((a, x) => {
         if(x <0) {
-            result.unshift(x)
+            a.unshift(x)
         }else {
-            result.push(x)
+            a.push(x)
         }
-    })
-    console.log(result.join("\n"));
+        return a
+    }, []).join("\n")
 }
