@@ -1,4 +1,4 @@
-function solve(arr) {
+function solve(...arr) {
     let num=Number(arr.shift())
     for(let i=0;i<arr.length;i++) {
         let operation=arr[i]
