@@ -7,5 +7,5 @@ function solve(matrix) {
         sum2+=x[x.length-1-i]
         i++
     })
-    console.log(sum1 , sum2);
+    return sum1 , sum2
 }
