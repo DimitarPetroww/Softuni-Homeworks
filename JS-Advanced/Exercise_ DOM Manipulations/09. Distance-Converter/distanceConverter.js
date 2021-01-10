@@ -7,7 +7,6 @@ function attachEventsListeners() {
 
 
     function convert(value) {
-
         const inputConverter = {
             "km": (v) => v *= 1000,
             "m": (v) => v,
