@@ -19,7 +19,6 @@ function attachEvents() {
             body: JSON.stringify({ angler, weight, species, location, bait, captureTime })
         }))
     }
-
     const [anglerInput, weightInput, speciesInput, locationInput, baitInput, captureInput] = document.querySelectorAll("#addForm > input")
     const [loadBtn, addBtn] = document.querySelectorAll("button")
     addBtn.addEventListener("click", () => {
@@ -122,6 +121,5 @@ function attachEvents() {
     let renderInput = renderElement.bind(undefined, "input")
     let renderButton = renderElement.bind(undefined, "button")
 }
-
 attachEvents();
 
