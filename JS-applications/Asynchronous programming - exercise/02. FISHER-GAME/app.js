@@ -44,21 +44,6 @@ function attachEvents() {
             document.getElementById("catches").appendChild(divCatch)
         })
     }
-    function renderElement(elementType, className, value, type) {
-        const element = document.createElement(elementType)
-        if (type) {
-            element.type = type
-        }
-        if (className) {
-            element.className = className
-        }
-        if (elementType === "div") {
-            element.setAttribute("data-id", value)
-        } else {
-            element[renderMap[elementType]] = value
-        }
-        return element
-    }
     const renderMap = {
         "button": "innerHTML",
         "input": "value",
@@ -95,6 +80,21 @@ function attachEvents() {
             class: "captureTime",
             type: "number"
         },
+    }
+    function renderElement(elementType, className, value, type) {
+        const element = document.createElement(elementType)
+        if (type) {
+            element.type = type
+        }
+        if (className) {
+            element.className = className
+        }
+        if (elementType === "div") {
+            element.setAttribute("data-id", value)
+        } else {
+            element[renderMap[elementType]] = value
+        }
+        return element
     }
     let renderDiv = renderElement.bind(undefined, "div", "catch")
     let renderLabel = renderElement.bind(undefined, "label", "")
