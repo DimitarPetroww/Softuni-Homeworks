@@ -23,11 +23,11 @@ function editBook(e) {
     const [title, author, isbn] = document.querySelectorAll("#edit-form > input")
     const id = document.querySelector("#edit-form > h3").dataset.key
     editBookFromDB(id, title.value, author.value, isbn.value)
-        .then(setTimeout(() => {
+        .then(() => {
             renderBooks()
             document.getElementById("create-form").style.display = "block"
             document.getElementById("edit-form").style.display = "none"
-        }, 300))
+        })
 }
 const buttonMap = {
     "Edit": showEditForm,
@@ -55,9 +55,9 @@ function showEditForm(parentTarget) {
 
 function deleteBook(parentTarget) {
     deleteBookFromDB(parentTarget.dataset.key)
-        .then(setTimeout(() => {
+        .then(() => {
             renderBooks()
-        }, 300))
+        })
 }
 
 function renderBooks() {
@@ -86,9 +86,9 @@ function addBook(e) {
         return
     }
     getBook(title.value, author.value, isbn.value)
-        .then(setTimeout(() => {
+        .then(() => {
             renderBooks()
-        }, 300))
+        })
     title.value = ""
     author.value = ""
     isbn.value = ""
