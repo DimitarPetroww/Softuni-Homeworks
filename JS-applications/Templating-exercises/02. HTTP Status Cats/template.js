@@ -1,8 +1,5 @@
-(() => {
-     renderCatTemplate();
-
-     function renderCatTemplate() {
-         // TODO: Render cat template and attach events
-     }
- 
+fetch("./template.hbs")
+.then(r=>r.text())
+.then(handlebarsView => {
+    document.getElementById("allCats").innerHTML = Handlebars.compile(handlebarsView)({cats})
 })
