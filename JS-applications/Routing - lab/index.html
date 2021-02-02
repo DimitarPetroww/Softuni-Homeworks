@@ -31,13 +31,11 @@
               </div>
               <div class="form-group has-success">
                   <label class="form-control-label" for="new-model">Model</label>
-                  <input class="form-control is-valid" id="new-model" type="text">
-                  <div class="form-control-feedback">This input value is valid</div>
+                  <input class="form-control" id="new-model" type="text">
               </div>
               <div class="form-group has-danger">
                   <label class="form-control-label" for="new-year">Year</label>
-                  <input class="form-control is-invalid" id="new-year" type="number">
-                  <div class="form-control-feedback">This input value is invalid</div>
+                  <input class="form-control" id="new-year" type="number">
               </div>
               <div class="form-group">
                   <label class="form-control-label" for="new-description">Description</label>
@@ -62,7 +60,8 @@
       </div>
   </form>
   </div>
-  <script src="firebaseConfig.js"></script>
+  <script src="./firebaseConfig.js"></script>
+  <script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
   <script type="module" src="./app.js"></script>
 </body>
 
