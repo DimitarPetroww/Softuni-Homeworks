@@ -8,10 +8,11 @@
         <div class="row space-top">
             <div class="col-md-4">
                 <div class="card text-white bg-primary">
+                    {{#each this}}
                     <div class="card-body">
                         <blockquote class="card-blockquote">
-                            <img src="imageUrl" />
-                            <p>Description here</p>
+                            <img src="{{this.image}}" />
+                            <p>{{this.description}}</p>
                             <footer>Someone famous in
                                 <cite title="Source Title">Source Title</cite>
                             </footer>
@@ -20,6 +21,7 @@
                             </div>
                         </blockquote>
                     </div>
+                    {{/each}}
                 </div>
             </div>
         </div>
