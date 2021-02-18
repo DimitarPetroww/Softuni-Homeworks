@@ -1,3 +1,5 @@
+let pizzUni = require("./solution.js");
+let assert = require("chai").assert;
 describe("MyTests", () => {
     describe("makeAnOrder(obj)", () => {
         it("should throw an Error if we dont pass an ordered pizza", () => {
