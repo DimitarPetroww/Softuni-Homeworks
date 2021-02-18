@@ -1,60 +1,68 @@
 function solve() {
-    let [nameEl, ageEl, kindEl, ownerEl] = document.querySelectorAll("input")
-    let addBtn = document.getElementsByTagName("button")[0]
-    let adoptionField = document.querySelector("#adoption > ul")
-    let adoptedField = document.querySelector("#adopted > ul")
-    addBtn.addEventListener("click", (e) => {
+    const [name, age, kind, owner, addBtn] = Array.from(document.querySelector("#container").children)
+    const html = {
+        "adoption": () => document.querySelector("#adoption > ul"),
+        "adopted": () => document.querySelector("#adopted > ul")
+    }
+    addBtn.addEventListener("click", addPet)
+    function clearValues(...inputNodes) {
+        inputNodes.map(node => node.value = "")
+    }   
+
+    function addPet(e) {
         e.preventDefault()
-        let [name, age, kind, owner] = [nameEl.value, ageEl.value, kindEl.value, ownerEl.value]
-        if (name  && age && kind && owner) {
-            if(Number(age)) {
-                let liAdoption = document.createElement("li")
-                let p = document.createElement("p")
-                let spanOld = document.createElement("span")
-                let contactBtn = document.createElement("button")
-                p.innerHTML = `<strong>${name}</strong> is a <strong>${age}</strong> year old <strong>${kind}</strong>`
-                liAdoption.appendChild(p)
-                spanOld.innerHTML = `Owner: ${owner}`
-                liAdoption.appendChild(spanOld)
-                contactBtn.textContent = "Contact with owner"
-                contactBtn.addEventListener("click", function (e) {
-                    let parent=e.currentTarget.parentElement
-                    e.currentTarget.remove()
-                    let div = document.createElement("div")
-                    let inputTake = document.createElement("input")
-                    inputTake.setAttribute("placeholder", "Enter your names")
-                    div.appendChild(inputTake)
-                    let takeBtn = document.createElement("button")
-                    takeBtn.textContent = "Yes! I take it!"
-                    takeBtn.addEventListener("click", function (e) {
-                        if (inputTake.value) {
-                            e.currentTarget.parentElement.parentElement.remove()
-                            let liAdopted = document.createElement("li")
-                            let p2 = document.createElement("p")
-                            p2.innerHTML = `<strong>${name}</strong> is a <strong>${age}</strong> year old <strong>${kind}</strong>`
-                            liAdopted.appendChild(p2)
-                            let spanNew = document.createElement("span")
-                            spanNew.textContent = `New Owner: ${inputTake.value}`
-                            liAdopted.appendChild(spanNew)
-                            let checkBtn=document.createElement("button")
-                            checkBtn.textContent="Checked"
-                            checkBtn.addEventListener("click" , (e) => {
-                                e.currentTarget.parentElement.remove()
-                            })
-                            liAdopted.appendChild(checkBtn)
-                            adoptedField.appendChild(liAdopted)
-                        }
-                    })
-                    div.appendChild(takeBtn)
-                    parent.appendChild(div)
-                })
-                liAdoption.appendChild(contactBtn)
-                adoptionField.appendChild(liAdoption)
-            }
+        if(name.value == "" || age.value == "" || kind.value == "" || owner.value == "" || isNaN(age.value)) {
+            return
         }
-        nameEl.value = ""
-        ageEl.value = ""
-        kindEl.value = ""
-        ownerEl.value = ""
-    })
+        const paragraph = p(`<strong>${name.value}</strong> is a <strong>${age.value}</strong> year old <strong>${kind.value}</strong>`)
+        const spanElement = span(`Owner: ${owner.value}`)
+        const contactButton = button("Contact with owner", {}, {click: takePet})
+        const liElement = li("", {}, {}, paragraph, spanElement, contactButton)
+        append(html.adoption(), liElement)
+        clearValues(name, age, kind, owner)
+    }
+    function takePet(e) {
+        const parent = e.target.parentElement
+        e.target.remove()
+        const inputElement = input({placeholder: "Enter your names"})
+        const takeButton = button("Yes! I take it!", {}, {click: adoptPet})
+        const divElement = div("", {}, {}, inputElement, takeButton)
+        append(parent, divElement)
+    }
+    function adoptPet(e) {
+        const div = e.target.parentElement
+        const li = div.parentElement
+        const input = div.querySelector("input")
+        if(input.value === "") {
+            return
+        }
+        div.remove()
+        li.querySelector("span").innerHTML = `New Owner: ${input.value}`
+        const checkButton = button("Checked", {}, {click: removePet})
+        append(li, checkButton)
+        append(html.adopted(), li)
+    }
+    function removePet(e) {
+        e.target.parentElement.remove()
+    }
+    const append = (parent, ...children) => children.map(node=> parent.appendChild(node))
+    const li = c.bind(undefined, "li")
+    const div = c.bind(undefined, "div")
+    const input = c.bind(undefined, "input", "")
+    const p = c.bind(undefined, "p")
+    const span = c.bind(undefined, "span")
+    const button = c.bind(undefined, "button")
+
+    function c(type, content, attributes = {}, events = {}, ...children) {
+        const e = document.createElement(type)
+        if(content !== "") {
+            e.innerHTML = content
+        }
+        Object.entries(attributes).map(([key, value]) => e.setAttribute(key, value))
+        Object.entries(events).map(([type, handler]) => e.addEventListener(type, handler))
+        append(e, ...children)
+        return e
+    }
 }
+
+
