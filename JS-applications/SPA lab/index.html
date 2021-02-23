@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Application 2020</title>
+    <link rel="icon" type="image/png" href="../static/favicon.ico">
+    <link href="../static/css/site.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script src="./scripts/router.js" defer></script>
+    <script src="./scripts/notification.js" defer></script>
+    <script src="./scripts/app.js" defer></script>
+</head>
+
+<body>
+    <section class="notifications" style="display: none;">
+        <p class="notification-message" id="errorBox"></p>
+    </section>
+    <section class="notifications" style="display: none;background-color:rgba(1, 131, 29, 0.541);">
+        <p class="notification-message" id="successBox"></p>
+    </section>
+    <div class="container" id="container">
+        <footer class="page-footer font-small">
+            <div class="footer-copyright text-center py-3">© 2020
+                <a href="https://softuni.bg/trainings/2840/js-applications-june-2020/internal" class="text-dark">JS
+                    Applications</a>
+            </div>
+        </footer>
+    </div>
+    <script type="text/x-handlebars-template" id="home-template">
+        {{>navigation}}
+        <div class="jumbotron jumbotron-fluid text-light" style="background-color: #343a40;">
+        <img src="https://s.studiobinder.com/wp-content/uploads/2019/06/Best-M-Night-Shyamalan-Movies-and-Directing-Style-StudioBinder.jpg"
+            class="img-fluid" alt="Responsive image">
+        <h1 class="display-4">Movies</h1>
+        <p class="lead">Unlimited movies, TV shows, and more. Watch anywhere. Cancel anytime.</p>
+        </div>
+        {{#if isLogged}} 
+        {{>movies}}
+        {{/if}}  
+    </script>
+    <script type="text/x-handlebars-template" id="login-template">
+        {{>navigation}}
+        <form class="text-center border border-light p-5"  onsubmit="login(event)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" placeholder="Email" name="email" value="">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" placeholder="Password" name="password" value="">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </script>
+    <script type="text/x-handlebars-template" id="navigation-template">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navigation" onclick="navigate(event)">
+            <a class="navbar-brand text-light" href="/">Movies</a>
+            <ul class="navbar-nav ml-auto ">
+                {{#if isLogged}}
+                <li class="nav-item">
+                    <a class="nav-link">Welcome, {{email}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                {{/if}}
+            </ul>
+        </nav>
+    </script>
+    <script type="text/x-handlebars-template" id="register-template">
+        {{>navigation}}
+        <form class="text-center border border-light p-5" onsubmit="register(event)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" placeholder="Email" name="email" value="">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" placeholder="Password" name="password" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="repeatPassword">Repeat Password</label>
+                <input type="password" class="form-control" placeholder="Repeat-Password" name="repeatPassword"
+                    value="">
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </script>
+    <script type="text/x-handlebars-template" id="movies-template">
+        <h1 class="text-center">Movies</h1>
+        <section>
+            <a href="/add" class="btn btn-warning" onclick="onAddBtnClick(event)">Add Movie</a>
+            <form class="search float-right">
+                <label>Search: </label>
+                <input type="text">
+                <input type="submit" class="btn btn-info" value="Search">
+            </form>
+        </section>
+        <div class=" mt-3 ">
+            <div class="row d-flex d-wrap">
+                <div class="card-deck d-flex justify-content-center">
+                {{#if movies}}
+                    {{#each movies}}
+                        {{>movie}}
+                    {{/each}}
+                {{else}}
+                <h2>No movies...</h2>
+                {{/if}}
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/x-handlebars-template" id="movie-template">
+        <div class="card mb-4">
+            <img class="card-img-top" src="{{imageURL}}"
+                alt="{{title}}" width="400">
+            <div class="card-body">
+                <h4 class="card-title">{{title}}</h4>
+            </div>
+            <div class="card-footer">
+                <a href="/details/{{id}}" onclick="onDetailsBtnClick(event)"><button type="button"
+                        class="btn btn-info">Details</button></a>
+            </div>
+        </div>
+    </script>
+    <script type="text/x-handlebars-template" id="add-template">
+        {{>navigation}}
+        <form class="text-center border border-light p-5" onsubmit="addMovie(event)">
+            <h1>Add Movie</h1>
+            <div class="form-group">
+                <label for="title">Movie Title</label>
+                <input type="text" class="form-control" placeholder="Title" name="title" value="">
+            </div>
+            <div class="form-group">
+                <label for="description">Movie Description</label>
+                <textarea class="form-control" placeholder="Description" name="description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Image url</label>
+                <input type="text" class="form-control" placeholder="Image Url" name="imageUrl" value="">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </script>
+    <script type="text/x-handlebars-template" id="edit-template">
+            {{>navigation}}
+            <form class="text-center border border-light p-5" onsubmit="editMovie(event)">
+                <h1>Edit Movie</h1>
+                <div class="form-group">
+                    <label for="title">Movie Title</label>
+                    <input type="text" class="form-control" placeholder="Title" name="title" value="">
+                </div>
+                <div class="form-group">
+                    <label for="description">Movie Description</label>
+                    <textarea class="form-control" placeholder="Description" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Image url</label>
+                    <input type="text" class="form-control" placeholder="Image Url" name="imageUrl" value="">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </script>
+    <script type="text/x-handlebars-template" id="details-template">
+        {{>navigation}}
+        <div class="row bg-light text-dark">
+            <h1>Movie title: {{title}}</h1>
+            <div class="col-md-8">
+                <img class="img-thumbnail" src="{{imageURL}}"
+                    alt="{{title}}">
+            </div>
+            <div class="col-md-4 text-center">
+                <h3 class="my-3 ">Movie Description</h3>
+                <p>{{description}}</p>
+                {{#if creator}}
+                <a class="btn btn-danger" href="{{id}}">Delete</a>
+                <a class="btn btn-warning" href="edit/{{id}}" onclick="onEditClick(event)">Edit</a>
+                {{else}}
+                {{#if likedAlready}}
+                <span class="enrolled-span">Liked {{likes}}</span>
+                {{else}}
+                <a class="btn btn-primary" href="{{id}}"onclick="likeMovie(event)">Like</a>
+                {{/if}}
+                {{/if}}
+            </div>
+        </div>
+    </script>
+</body>
+
+</html>
