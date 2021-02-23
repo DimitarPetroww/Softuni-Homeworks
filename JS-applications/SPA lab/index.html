@@ -184,7 +184,7 @@
                 <h3 class="my-3 ">Movie Description</h3>
                 <p>{{description}}</p>
                 {{#if creator}}
-                <a class="btn btn-danger" href="{{id}}">Delete</a>
+                <a class="btn btn-danger" href="{{id}}" onclick="deleteMovie(event)">Delete</a>
                 <a class="btn btn-warning" href="edit/{{id}}" onclick="onEditClick(event)">Edit</a>
                 {{else}}
                 {{#if likedAlready}}

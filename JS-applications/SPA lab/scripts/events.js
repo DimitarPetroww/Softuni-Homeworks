@@ -19,7 +19,7 @@ function login(e) {
     })
         .then(r => r.json())
         .then(data => {
-            localStorage.setItem("user", data.email)    
+            localStorage.setItem("user", data.email)
             router("/")
         })
         .catch(console.log)
@@ -53,6 +53,7 @@ function onDetailsBtnClick(e) {
     fetch(`https://movies-workshop-abeee-default-rtdb.firebaseio.com/movies/${id}.json`)
         .then(r => r.json())
         .then(data => {
+            data.peopleLiked = data.peopleLiked || []
             const template = Handlebars.compile(document.getElementById("details-template").innerHTML)
             Object.assign(data, { isLogged: !!user, email: user, creator: data.creator === user, id: id, likedAlready: data.peopleLiked.includes(user), likes: data.peopleLiked.length })
             document.getElementById("container").innerHTML = template(data)
@@ -74,7 +75,8 @@ function addMovie(e) {
 async function likeMovie(e) {
     e.preventDefault()
     const user = localStorage.getItem("user")
-    const id = new URL(e.target.href).pathname.slice(1)
+    const path = new URL(e.target.href).pathname
+    const id = path.slice(path.lastIndexOf("/") + 1)
     const data = await (await fetch(`https://movies-workshop-abeee-default-rtdb.firebaseio.com/movies/${id}.json`)).json()
     const peopleLiked = data.peopleLiked || []
     peopleLiked.push(user)
@@ -83,7 +85,14 @@ async function likeMovie(e) {
         body: JSON.stringify({ peopleLiked: peopleLiked })
     })
         .then(() => {
-            router(`/details/${id}`)
+            fetch(`https://movies-workshop-abeee-default-rtdb.firebaseio.com/movies/${id}.json`)
+                .then(r => r.json())
+                .then(data => {
+                    data.peopleLiked = data.peopleLiked || []
+                    const template = Handlebars.compile(document.getElementById("details-template").innerHTML)
+                    Object.assign(data, { isLogged: !!user, email: user, creator: data.creator === user, id: id, likedAlready: data.peopleLiked.includes(user), likes: data.peopleLiked.length })
+                    document.getElementById("container").innerHTML = template(data)
+                })
         })
 }
 function onEditClick(e) {
@@ -105,5 +114,16 @@ function editMovie(e) {
     })
         .then(() => {
             router(`/`)
+        })
+}
+function deleteMovie(e) {
+    e.preventDefault()
+    const path = new URL(e.currentTarget.href).pathname
+    const id = path.slice(path.lastIndexOf("/") + 1)
+    fetch(`https://movies-workshop-abeee-default-rtdb.firebaseio.com/movies/${id}.json`, {
+        method: "DELETE"
+    })
+        .then(() => {
+            router("/")
         })
 }
