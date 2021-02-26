@@ -1,0 +1,17 @@
+{
+  "name": "qnko",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "lite-server index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+
+}
