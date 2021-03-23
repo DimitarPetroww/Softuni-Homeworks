@@ -1,2 +1,1 @@
-# JS-softuni-homeworks
-JS softuni homeworks
+# JS-Advanced course
