@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(238, 238, 238);
+    color: rgb(51, 51, 51) ;
+}
+.container {
+    margin: 25px 100px;
+    display: inline-block;
+}
+img {
+    width: 350px;
+    height: 300px;
+}
+article {
+    width: 50%;
+}
+aside, article { 
+    display: inline-block;
+    vertical-align: top;
+}
