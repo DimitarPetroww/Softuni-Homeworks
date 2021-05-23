@@ -1,0 +1,17 @@
+html {
+    box-sizing: border-box;
+}
+body, * {
+    box-sizing: inherit;
+}
+
+.container {
+    width: 250px;
+    height: 250px;
+    border: 5px dashed #23CA85
+}
+.info {
+    width: 100%;
+    border: 5px solid #0936CA;
+    padding: 20px;
+}
