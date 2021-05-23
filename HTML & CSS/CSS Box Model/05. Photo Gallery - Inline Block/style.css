@@ -1,0 +1,19 @@
+body {
+    background: lightgray;
+}
+.gallery {
+    max-width: 1200px;
+    list-style: none;
+    margin: 50px auto;
+}
+.gallery > li {
+    border: .4rem solid black;
+    background: white;
+    display: inline-block;
+    margin: 10px;
+    width: 30%;
+}
+img {
+    padding: 20px;
+    width: 88%;
+}
