@@ -1,0 +1,42 @@
+@import "https://use.fontawesome.com/releases/v5.15.3/css/all.css";
+body {
+    margin: 0;
+    padding: 0;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+i {
+    color: white;
+    position: absolute;
+    top: 70%;
+    left: 63%;
+}
+i.fa-star {
+    top: 90%;
+}
+
+.card {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+img {
+    box-shadow: inset 0px 0px 20px 40px #000000;
+}
+
+.viewport:nth-child(1) {
+    height: 100vh;
+    position: relative;
+    background-image: linear-gradient(to right, #1a609d, #006ba1, #0075a3, #007ea3, #0087a2, #008fa4, #0e98a5, #20a0a5, #1baaa7, #20b4a7, #2ebea5, #40c7a1);
+}
+
+.viewport:nth-child(2) {
+    height: 100vh;
+    position: relative;
+    background-image: linear-gradient(to right, #a93574, #ae386c, #b23d64, #b5425d, #b64857, #bb4d52, #be524c, #c15847, #c75f3e, #cc6735, #cf7129, #cf7b1b);
+}
